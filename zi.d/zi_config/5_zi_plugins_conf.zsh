@@ -22,10 +22,18 @@ zstyle ":plugin:history-search-multi-word" clear-on-cancel "no"        # 使用 
 # =========================================
 
 # 调整 F-sy-H zsh-completions zsh-autosuggestions 的加载顺序
+# =========================================
 zi wait lucid for \
   atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-     z-shell/F-Sy-H \
+     @z-shell/F-Sy-H \
   blockf \
-      zsh-users/zsh-completions \
+      @zsh-users/zsh-completions \
   atload"!_zsh_autosuggest_start" \
-     zsh-users/zsh-autosuggestions
+     @zsh-users/zsh-autosuggestions
+# =========================================
+
+# 更改 zoxide fzf themes
+# =========================================
+zi has'zoxide' wait lucid for atinit="_ZO_CMD_PREFIX=x _ZO_FZF_OPTS='--height 40% --layout=reverse-list --border'" \
+@z-shell/zsh-zoxide
+# =========================================
