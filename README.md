@@ -1,34 +1,43 @@
 # ZSH_profiles
-使用 ZI 插件管理器，由于配置比较另类请酌情取用。
-fzf-tab fzf fd rg bat exa 等终端工具都通过 zi meta 插件包安装了，不通过包管理
+这是我的个人 `$ZDOTDIR`，如果需要使用请先备份好你的现有相关配置
+This is my personal `$ZDOTDIR`, If you want to USE THIS DOT is a good idea to `backup your existing conf-files` first. Emjoy :)
 
-# Jump Histpath 依赖于 zoxide
+# Directory Path
+
+使用 [ZI](https://github.com/z-shell/zi) 插件管理器
+- 安装目录 `${ZI[CONFIG_DIR]}`：
+    `$HOME/.local/share/zi`
+
+主要目录结构 [SixArm/zsh-config](https://github.com/SixArm/zsh-config)
+- Zsh 以及 ZI、plugin 相关配置目录 `${ZDORDIR}`:
+    `$HOME/.config/zsh`
+
+# How to use
+请先备份旧配置，再进行迁移！
+
+1. 创建 `$HOME/.zshenv` 文件
+- 不建议使用 `XDG_COFNIG_DIR` 的[原因](https://www.reddit.com/r/zsh/comments/qtehjs/comment/hkkpzyi/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
+
+`$HOME/.zshenv` 用于设置 `ZDOTDIR` 指定在单独的自定义文件夹中管理 Zsh 相关配置
+
+- `$HOME/.zshenv`
+```
+# `ZDOTDIR` zsh shell config dir
+ZDOTDIR="${HOME}/.config/zsh"
+source -- "${ZDOTDIR}/.zshenv"
+
+```
+
+2. 将配置拉取到 `$HOME/.config/`
+`git clone git@github.com:awarewen/zsh.d.git $HOME/.config/zsh`
+
+3. 重启终端，插件管理器应该开始自动安装插件
+
+# ZI 插件 `zoxide` Jump Histpath 功能 依赖于独立的二进制可执行程序 [zoxide](https://github.com/ajeetdsouza/zoxide)
 `yay -S zoxide`
 
-# Configuare
-- 将这些写入到 `~/.zshrc`
-```sh
-#                                                 ZSH Options                                                #
-##############################################################################################################
-# 设置历史保存的文件
-
-HISTFILE=${HOME}/.histfile
-if [[ -f ${HOME}/.zshhistfile || ! -f $HISTFILE ]]; then
-  command touch $HISTFILE
-fi
-  HISTSIZE=10000
-  SAVEHIST=10000
-setopt autocd extendedglob
-bindkey -v # vim keybind
-
-#                                                 Load zinit                                                 #
-##############################################################################################################
-
-Z_CONF_DIR=${XDG_CONFIG_HOME:-$HOME/.config/zsh.d/zi.d/zi_config}
-if [[ -d ${Z_CONF_DIR} ]] && [[ -f ${Z_CONF_DIR}/init.zsh ]]; then
-for file in ${ZI_CONFIG}/**/*(.N)
-do
-    [ -x "$file" ] &&  . "$file"
-done
-fi
+使用方法：
+```
+cd xxx      # zoxide 会将 cd 进入的目录添加到 Jump Histpath List 中
+xi          # 通过直接输入 xi 调用程序模糊搜索
 ```
