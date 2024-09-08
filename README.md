@@ -7,7 +7,7 @@ fzf-tab fzf fd rg bat exa 等终端工具都通过 zi meta 插件包安装了，
 
 # Configuare
 - 将这些写入到 `~/.zshrc`
-```
+```sh
 #                                                 ZSH Options                                                #
 ##############################################################################################################
 # 设置历史保存的文件
@@ -24,9 +24,11 @@ bindkey -v # vim keybind
 #                                                 Load zinit                                                 #
 ##############################################################################################################
 
-ZI_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config/zsh.d/zi.d/zi_config}
+Z_CONF_DIR=${XDG_CONFIG_HOME:-$HOME/.config/zsh.d/zi.d/zi_config}
+if [[ -d ${Z_CONF_DIR} ]] && [[ -f ${Z_CONF_DIR}/init.zsh ]]; then
 for file in ${ZI_CONFIG}/**/*(.N)
 do
     [ -x "$file" ] &&  . "$file"
 done
+fi
 ```
