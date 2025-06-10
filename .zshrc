@@ -78,6 +78,11 @@ if [[ -f "${ZDOTDIR}/zi_init.zsh" ]]; then
   source "${ZDOTDIR}/zi_init.zsh"
 fi
 
+
+#                                             Source Zsh config                                            #
+##############################################################################################################
+
+
 #                                             Alias And Functions                                            #
 ##############################################################################################################
 
@@ -123,17 +128,6 @@ export _ZO_FZF_OPTS='--height 60% --layout reverse --border top --preview "echo 
 export FZF_DEFAULT_COMMAND='fd --hidden --follow . /home/awarewen /etc /usr' #. /etc /home
 #export FZF_DEFAULT_COMMAND='rg ' #. /etc /home
 export FZF_DEFAULT_OPTS='--height 60% --layout reverse --border top --preview "echo {} | ~/.config/fzf/fzf_preview.py" --preview-window=right -m' # --layout=reverse-list 
-
-alias l='eza -a'
-alias ls='eza -alhG'
-alias ll='eza -lhiogab --icons --group-directories-first'
-alias lls='eza -lhioGgab --icons --group-directories-first'
-alias lll='eza -lhiogab --icons'
-alias llls='eza -lhioGgab --icons'
-alias ld='eza -liogab --icons -D'
-alias lds='eza -lioGgab --icons -D'
-alias lf='eza -liogab --icons -f'
-alias lfs='eza -lioGgab --icons -f'
 
 alias s='sudo'
 alias yays="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S"

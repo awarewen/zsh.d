@@ -19,6 +19,9 @@
 # - z-shell/curses         #
 # - z-shell/zui            # zui 文本界面库
 # - zsh-users/zsh          # zsh
+# - Freed-Wu/fzf-tab-source # fzf-tab-source
+# - eza-community/eza      # ls 的现代替代品
+# - zsh-shell/zsh-eza
 # =====================================================
 
 # meta Plugins
@@ -27,11 +30,11 @@
 # =====================================================
 zi light-mode for \
   z-shell/z-a-meta-plugins \
-  @annexes+ \
-  @zsh-users+fast \
-  skip'skim peco' @fuzzy \
-  @romkatv \
-  skip'exa vivid hyperfine hexyl dircolors-material' @console-tools
+          @annexes+ \
+          @zsh-users+fast \
+          skip'skim peco' @fuzzy \
+          @romkatv \
+          skip'exa vivid hyperfine hexyl dircolors-material' @console-tools \
 # =====================================================
 
 # zsh-vi-mode
@@ -65,3 +68,13 @@ zi load @zsh-users/zsh
 # ZUI 文本界面库，zi-console 依赖
 zi load @z-shell/zui
 # =====================================================
+
+# fzf-tab-source
+zi light @Freed-Wu/fzf-tab-source
+
+# eza
+  zi ice from'gh' as'program' sbin'**/eza -> eza' atclone'CARGO_HOME=$ZPFX cargo install --path . && cp -vf completions/zsh/_eza _eza'
+  zi light eza-community/eza
+
+  zi ice has'eza' atinit'AUTOCD=1'
+  zi light z-shell/zsh-eza
