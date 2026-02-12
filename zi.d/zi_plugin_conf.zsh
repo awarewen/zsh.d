@@ -14,7 +14,7 @@ ZVM_SYSTEM_CLIPBOARD_ENABLED=true # 使用系统剪切板
 zstyle :plugin:history-search-multi-word reset-prompt-protect 1        # 查看命令的所有匹配项以及周围的命令集
 typeset -gA HSMW_HIGHLIGHT_STYLES
 HSMW_HIGHLIGHT_STYLES[path]="bg=magenta,fg=white,bold"                 # 通过 `HSMW_HIGHLIGHT_STYLES` 设定关联数组进行自定义语法高亮 "完整列表: https://github.com/z-shell/H-S-MW/blob/main/functions/hsmw-highlight#L36-L65"
-zstyle ":history-search-multi-word" page-size "8"                      # 显示条目数量 (default is $LINES/3)
+zstyle ":history-search-multi-word" page-size "10"                     # 显示条目数量 (default is $LINES/3)
 zstyle ":history-search-multi-word" highlight-color "fg=red,bold"      # 突出显示匹配搜索文本的颜色 (default bg=17 on 256-color terminals)
 zstyle ":plugin:history-search-multi-word" synhl "yes"                 # 是否进行语法高亮 (default true)
 zstyle ":plugin:history-search-multi-word" active "underline"          # 对活动历史记录条目的影响 Try: standout, bold, bg=blue (default underline)
