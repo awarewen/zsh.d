@@ -40,41 +40,49 @@ zi light-mode for \
 # zsh-vi-mode
 # ## https://github.com/jeffreytse/zsh-vi-mode
 # =====================================================
-zi ice depth=1;zi light @jeffreytse/zsh-vi-mode
+zi ice depth=1 
+zi light jeffreytse/zsh-vi-mode
 # =====================================================
 
 # Zoxide
 # =====================================================
-zi ice as'null' from"gh-r" sbin
-zi light @ajeetdsouza/zoxide
+zi ice wait lucid as'null' from"gh-r" sbin
+zi light ajeetdsouza/zoxide
+
+zi ice wait lucid has'zoxide' atinit="_ZO_CMD_PREFIX=c _ZO_FZF_OPTS='--height 40% --layout=reverse-list --border'"
+zi light z-shell/zsh-zoxide
 # =====================================================
 
 # H-S-MW
 # ## https://github.com/z-shell/H-S-MW
 # =====================================================
-zi ice wait lucid; zi light @z-shell/H-S-MW
+zi ice wait lucid
+zi light z-shell/H-S-MW
 # =====================================================
 
 # zi-console
 # https://wiki.zshell.dev/zh-Hans/ecosystem/plugins/zi-console
 # =====================================================
-zi wait lucid for @z-shell/zi-console
+# 加载顺序 zui -> zi-console
+zi ice wait lucid for \
+  z-shell/zui \
+  z-shell/zi-console
 # zi-console 依赖于 curses， 构建 zsh/curses 模块
-zi ice id-as"zsh" atclone"./.preconfig
-    CFLAGS='-I/usr/include -I/usr/local/include -g -O2 -Wall' \
-    LDFLAGS='-L/usr/lib -L/usr/local/lib' ./configure --prefix='$ZPFX'" \
-  atpull"%atclone" run-atpull make"install" pick"/dev/null"
-zi load @zsh-users/zsh
+#zi ice id-as"zsh" atclone"./.preconfig
+#    CFLAGS='-I/usr/include -I/usr/local/include -g -O2 -Wall' \
+#    LDFLAGS='-L/usr/lib -L/usr/local/lib' ./configure --prefix='$ZPFX'" \
+#  atpull"%atclone" run-atpull make"install" pick"/dev/null"
+#zi load zsh-users/zsh
 # ZUI 文本界面库，zi-console 依赖
-zi load @z-shell/zui
 # =====================================================
 
 # fzf-tab-source
-zi light @Freed-Wu/fzf-tab-source
+zi ice wait lucid 
+zi light Freed-Wu/fzf-tab-source
 
 # eza
-  zi ice from'gh' as'program' sbin'**/eza -> eza' atclone'CARGO_HOME=$ZPFX cargo install --path . && cp -vf completions/zsh/_eza _eza'
-  zi light eza-community/eza
+zi ice wait lucid from'gh' as'program' sbin'**/eza -> eza' atclone'CARGO_HOME=$ZPFX cargo install --path . && cp -vf completions/zsh/_eza _eza'
+zi light eza-community/eza
 
-  zi ice has'eza' atinit'AUTOCD=1'
-  zi light z-shell/zsh-eza
+zi ice wait lucid has'eza' atinit'AUTOCD=1'
+zi light z-shell/zsh-eza

@@ -5,6 +5,7 @@ ZVM_CURSOR_STYLE_ENABLED=true     # 光标样式开关
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk   # 回退到 Normal 模式快捷键
 ZVM_VI_SURROUND_BINDKEY=s-prefix  # 环绕模式 (classic / s-prefix)
 ZVM_KEYTIMEOUT=0.5                # 按键等待时间
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true # 使用系统剪切板
 # =========================================
 
 # H-S-MW : 历史命令搜索
@@ -19,21 +20,4 @@ zstyle ":plugin:history-search-multi-word" synhl "yes"                 # 是否�
 zstyle ":plugin:history-search-multi-word" active "underline"          # 对活动历史记录条目的影响 Try: standout, bold, bg=blue (default underline)
 zstyle ":plugin:history-search-multi-word" check-paths "yes"           # 是否使用 magenta 颜色标记搜索列表中在当前目录下存在的目录路径 (default true)
 zstyle ":plugin:history-search-multi-word" clear-on-cancel "no"        # 使用 Ctrl-C or ESC 是否清除当前输入的查询
-# =========================================
-
-# 调整 F-sy-H zsh-completions zsh-autosuggestions 的加载顺序
-# =========================================
-zi wait lucid for \
-  atinit"ZI[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-     @z-shell/F-Sy-H \
-  blockf \
-      @zsh-users/zsh-completions \
-  atload"!_zsh_autosuggest_start" \
-     @zsh-users/zsh-autosuggestions
-# =========================================
-
-# 更改 zoxide fzf themes
-# =========================================
-zi has'zoxide' wait lucid for atinit="_ZO_CMD_PREFIX=x _ZO_FZF_OPTS='--height 40% --layout=reverse-list --border'" \
-@z-shell/zsh-zoxide
 # =========================================

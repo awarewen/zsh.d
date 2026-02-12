@@ -1,6 +1,7 @@
 # Nvim alias
 alias lnvim="NVIM_APPNAME=lnvim nvim"
 alias Snvim="NVIM_APPNAME=Snvim nvim"
+alias knvim="NVIM_APPNAME=knvim nvim"
 
 # Use neovide to connect nvim server mode
 alias nvimser="nvim --headless --listen localhost:7777"

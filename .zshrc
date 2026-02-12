@@ -89,6 +89,8 @@ fi
 # Nvim alias and functions
 alias lnvim="NVIM_APPNAME=lnvim nvim"
 alias Snvim="NVIM_APPNAME=Snvim nvim"
+alias knvim="NVIM_APPNAME=knvim nvim"
+alias Gnvim="NVIM_APPNAME=glepnvim nvim"
 
 set_proxy() { export https_proxy=http://127.0.0.1:$1 && export http_proxy=http://127.0.0.1:$1 && export all_proxy=127.0.0.1:$1; }
 unset_proxy() { unset https_proxy && unset http_proxy && unset all_proxy; }
@@ -181,7 +183,8 @@ function Cpacman () {
   echo "Done !"
 }
 
-alias ClearScreen="printf '\033[2J\033[3J\033[1;1H'"
+alias cls="printf '\033[2J\033[3J\033[1;1H'"
+alias qq="linuxqq --ozone-platform-hint=auto --enable-wayland-ime"
 
 export EDITOR=nvim
 #wget https://raw.githubusercontent.com/tmuxinator/tmuxinator/master/completion/tmuxinator.zsh -O /usr/local/share/zsh/site-functions/_tmuxinator
@@ -218,3 +221,22 @@ source <(fzf --zsh)
 #export QT_PLUGIN_PATH="/usr/lib/qt/plugins"
 #export GST_PLUGIN_PATH="/usr/lib/gstreamer-1.0"
 #export GST_PLUGIN_SYSTEM_PATH="/lib/gstreamer-1.0"
+# pnpm
+export PNPM_HOME="/home/awarewen/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# npm globle path
+export PATH="$(npm prefix -g)/bin:$PATH"
+
+# OpenClaw Completion
+source "/home/awarewen/.openclaw/completions/openclaw.zsh"
+
+# Added by Qoder CLI installer
+export PATH="$PATH:/home/awarewen/.local/bin"
+
+# upgrade illogical-impulse 
+alias upgradebar="cd ~/.cache/dots-hyprland && git stash && git pull && ./setup install"
